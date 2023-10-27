@@ -19,7 +19,6 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
-  use 'Mofiqul/dracula.nvim'
   use { "mfussenegger/nvim-jdtls", ft = { "java" } }
   use 'tribela/vim-transparent'
   use 'airblade/vim-gitgutter'
@@ -34,15 +33,6 @@ return require('packer').startup(function(use)
 	  tag = '0.1.0',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   })
-  use({
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
-    end
-  })
   use {
 	"windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
@@ -50,6 +40,13 @@ return require('packer').startup(function(use)
   use 'dense-analysis/ale'
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+  -- install without yarn or npm
+use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+})
+
+use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
   require("toggleterm").setup()
   end}
   -- use 'foo1/bar1.nvim'
