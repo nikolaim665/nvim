@@ -39,15 +39,8 @@ return require('packer').startup(function(use)
   }
   use 'dense-analysis/ale'
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-  -- install without yarn or npm
-use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-})
-
-use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-  require("toggleterm").setup()
+  use {"akinsho/toggleterm.nvim", tag= '*', config=function()
+    require("toggleterm").setup()
   end}
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'
